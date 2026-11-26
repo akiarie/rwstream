@@ -1,11 +1,11 @@
 CC = cc
 PKG_CONFIG ?= pkg-config
 
-CFLAGS ?= -I/usr/local/include 
+CFLAGS ?= -isystem /usr/local/include
 LDFLAGS = -L/usr/local/lib
 
-CMARK_CFLAGS = $(shell $(PKG_CONFIG) --cflags libcmark)
-CMARK_LIBS = $(shell $(PKG_CONFIG) --libs libcmark)
+CMARK_CFLAGS = $(shell $(PKG_CONFIG) --cflags libcmark-gfm)
+CMARK_LIBS = $(shell $(PKG_CONFIG) --libs libcmark-gfm)
 
 BIN = bin
 

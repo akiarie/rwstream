@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include <cmark.h>
+#include <cmark-gfm.h>
 
 #define TAG_TITLE	"{{ title }}"
 #define TAG_CONTENT	"{{ content }}"
@@ -77,15 +77,18 @@ render(char *template, char *content, char **result)
 static int
 md2html(char *md, char **result)
 {
-	char *s;
-
-	s = cmark_markdown_to_html(md, strlen(md), CMARK_OPT_UNSAFE);
+	char *s = cmark_markdown_to_html(
+		md, strlen(md), CMARK_OPT_UNSAFE | CMARK_OPT_FOOTNOTES
+	);
 	free(md);
+
 	if (s == NULL) {
 		fprintf(stderr, "Markdown to HTML conversion failed\n");
 		return -1;
 	}
+
 	*result = s;
+
 	return 0;
 }
 
