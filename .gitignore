@@ -2,3 +2,5 @@
 
 *.swp
 /typo/bin/
+
+/web/fonts/*.woff2
